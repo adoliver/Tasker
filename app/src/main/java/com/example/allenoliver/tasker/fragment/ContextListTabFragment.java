@@ -21,6 +21,10 @@ public class ContextListTabFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static ContextListTabFragment newInstance() {
+        ContextListTabFragment fragment = new ContextListTabFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

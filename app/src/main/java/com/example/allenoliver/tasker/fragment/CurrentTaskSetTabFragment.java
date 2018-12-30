@@ -22,6 +22,11 @@ public class CurrentTaskSetTabFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static CurrentTaskSetTabFragment newInstance() {
+        CurrentTaskSetTabFragment fragment = new CurrentTaskSetTabFragment();
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -21,6 +21,10 @@ public class AllTaskSetsTabFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static AllTaskSetsTabFragment newInstance() {
+        AllTaskSetsTabFragment fragment = new AllTaskSetsTabFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
