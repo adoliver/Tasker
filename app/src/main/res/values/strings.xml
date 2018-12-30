@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Tasker</string>
+    <string name="activity_current_task_set">Current Task Set</string>
+</resources>
