@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
-    <FrameLayout
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/tabFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -19,6 +19,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="@dimen/bottomNavHeight"
+        app:menu="@menu/main_navigation_items"
         app:layout_constraintTop_toBottomOf="@+id/tabFrame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

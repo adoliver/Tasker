@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Tasker</string>
-    <string name="activity_current_task_set">Current Task Set</string>
+    <string name="action_current_task_set">Current</string>
+    <string name="action_context_list">Contexts</string>
+    <string name="action_all_task_sets">All</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activity_main">Main Activity</string>
+    <string name="fragment_current_task_set_tab">Current Task Set</string>
+    <string name="fragment_context_list_tab">Context List Tab</string>
+    <string name="fragment_all_task_sets_tab">All Task Sets Tab</string>
 </resources>
