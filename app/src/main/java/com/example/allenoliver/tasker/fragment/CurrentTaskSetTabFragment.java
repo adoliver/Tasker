@@ -49,9 +49,6 @@ public class CurrentTaskSetTabFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragment = inflater.inflate(R.layout.fragment_current_task_set, container, false);
 
-        AppDatabase db = AppDatabase.getInstance(getContext());
-        //db.taskDao().insertAll(new Task(1,"Allen", "my notes", DataConstants.Task.STATUS_INCOMPLETE));
-
         TextView nextActions = fragment.findViewById(R.id.nextActionsTitle);
         nextActions.setText(getResources().getText(R.string.title_nextActions));
 
@@ -65,7 +62,20 @@ public class CurrentTaskSetTabFragment extends Fragment {
 //                AppDatabase.getInstance(getContext()).actionDao().getAll()); // Load Tasks into adapter
         mRecyclerViewNextActions.setAdapter(mAdapterNextActions);
 
+        fragment.findViewById(R.id.testButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadData(v);
+            }
+        });
+
         return fragment;
+    }
+
+    public void loadData(View v) {
+
+        AppDatabase db = AppDatabase.getInstance(getContext());
+        db.taskDao().insertAll(new Task(1,"Allen", "my notes", DataConstants.Task.STATUS_INCOMPLETE));
     }
 
 }
