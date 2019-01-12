@@ -33,21 +33,22 @@ public abstract class AppDatabase extends RoomDatabase {
                 AppDatabase.class,
                 "database-tasker-data")
 
-                //Add callback to prepopulate data into the newly created database
-//                .addCallback(new Callback() {
-//                    @Override
-//                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
-//                        // This gets called after the build() initialization has been run.
-//                        // At this point the database has been created and the AppDatabase instance exists
-//                        super.onCreate(db);
-//                        Executors.newSingleThreadExecutor().execute(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                getInstance(context).taskDao().insertAll(Task.prePopulate());
-//                            }
-//                        });
-//                    }
-//                })
+                // Add callback to prepopulate data into the newly created database
+                .addCallback(new Callback() {
+                    @Override
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                        // This gets called after the build() initialization has been run.
+                        // At this point the database has been created and the AppDatabase instance exists
+                        // Make sure to run this off the main thread so that the UI is still responsive
+                        super.onCreate(db);
+                        Executors.newSingleThreadExecutor().execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                getInstance(context).taskDao().insertAll(Task.prePopulate());
+                            }
+                        });
+                    }
+                })
 
                 .build(); // Generate the database if it hasn't been created yet.
         return db;
