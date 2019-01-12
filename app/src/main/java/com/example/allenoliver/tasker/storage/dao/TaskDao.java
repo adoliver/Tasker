@@ -11,7 +11,7 @@ import androidx.room.Query;
 
 @Dao
 public interface TaskDao {
-    @Query("SELECT * FROM Task")
+    @Query("SELECT * FROM task")
     List<Task> getAll();
 
     @Insert

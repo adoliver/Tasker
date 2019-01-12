@@ -17,11 +17,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 
-    public abstract TaskDao actionDao();
+    public abstract TaskDao taskDao();
 
     public static synchronized AppDatabase getInstance(final Context context) {
         if (instance == null) {
             instance = buildDatabase(context);
+            //instance.taskDao().insertAll(Task.prePopulate());
         }
         return instance;
     }
@@ -30,23 +31,23 @@ public abstract class AppDatabase extends RoomDatabase {
         AppDatabase db = Room.databaseBuilder(
                 context.getApplicationContext(),
                 AppDatabase.class,
-                "task-data")
+                "database-tasker-data")
 
                 //Add callback to prepopulate data into the newly created database
-                .addCallback(new Callback() {
-                    @Override
-                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                        // This gets called after the build() initialization has been run.
-                        // At this point the database has been created and the AppDatabase instance exists
-                        super.onCreate(db);
-                        Executors.newSingleThreadExecutor().execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                getInstance(context).actionDao().insertAll(Task.prePopulate());
-                            }
-                        });
-                    }
-                })
+//                .addCallback(new Callback() {
+//                    @Override
+//                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//                        // This gets called after the build() initialization has been run.
+//                        // At this point the database has been created and the AppDatabase instance exists
+//                        super.onCreate(db);
+//                        Executors.newSingleThreadExecutor().execute(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                getInstance(context).taskDao().insertAll(Task.prePopulate());
+//                            }
+//                        });
+//                    }
+//                })
 
                 .build(); // Generate the database if it hasn't been created yet.
         return db;

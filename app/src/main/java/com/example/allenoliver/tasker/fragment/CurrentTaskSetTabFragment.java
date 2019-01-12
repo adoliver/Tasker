@@ -13,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.allenoliver.tasker.R;
+import com.example.allenoliver.tasker.adapter.TaskListAdapter;
+import com.example.allenoliver.tasker.storage.AppDatabase;
+import com.example.allenoliver.tasker.storage.DataConstants;
+import com.example.allenoliver.tasker.storage.entities.Task;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +49,9 @@ public class CurrentTaskSetTabFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragment = inflater.inflate(R.layout.fragment_current_task_set, container, false);
 
+        AppDatabase db = AppDatabase.getInstance(getContext());
+        //db.taskDao().insertAll(new Task(1,"Allen", "my notes", DataConstants.Task.STATUS_INCOMPLETE));
+
         TextView nextActions = fragment.findViewById(R.id.nextActionsTitle);
         nextActions.setText(getResources().getText(R.string.title_nextActions));
 
@@ -49,8 +60,10 @@ public class CurrentTaskSetTabFragment extends Fragment {
         mLayoutManagerNextActions = new LinearLayoutManager(getContext());
         mRecyclerViewNextActions.setLayoutManager(mLayoutManagerNextActions);
 
-//        mAdapterNextActions = new NextActionsAdapter();
-//        mRecyclerViewNextActions.setAdapter(mAdapterNextActions);
+        mAdapterNextActions = new TaskListAdapter(Arrays.asList(Task.prePopulate()));
+//        mAdapterNextActions = new TaskListAdapter(
+//                AppDatabase.getInstance(getContext()).actionDao().getAll()); // Load Tasks into adapter
+        mRecyclerViewNextActions.setAdapter(mAdapterNextActions);
 
         return fragment;
     }
